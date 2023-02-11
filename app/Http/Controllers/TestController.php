@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Test;
+use Illuminate\Support\Facades\DB;
 
 class TestController extends Controller
 {
@@ -17,9 +18,13 @@ class TestController extends Controller
 
         $first = Test::findOrFail(1);
 
-        $whereBBB = Test::where('text', '=', 'bbb');
+        $whereBBB = Test::where('text', '=', 'bbb')->get();
 
-        dd($values, $count, $first, $whereBBB);
+        // クエリビルダ
+        $queryBuilder = DB::table('tests')->where('text', '=', 'bbb')
+        ->select('id', 'text');
+
+        dd($values, $count, $first, $whereBBB, $queryBuilder);
 
         return view('tests.test', compact('values'));
     }
