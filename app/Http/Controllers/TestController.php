@@ -11,6 +11,8 @@ class TestController extends Controller
     
     public function index()
     {
+        dd('test');
+
         // Eloquent(エロくアント)
         $values = Test::all();
 
