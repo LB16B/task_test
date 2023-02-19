@@ -10,6 +10,8 @@ class TestController extends Controller
 {
     public function index()
     {
+        dd('test');
+
         // Eloquent
         //全件取得 allでコレクション型
         $values = Test::all();
