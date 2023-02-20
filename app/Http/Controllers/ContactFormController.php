@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\ContactForm;
 use Illuminate\Http\Request;
 
 class ContactFormController extends Controller
@@ -35,7 +36,19 @@ class ContactFormController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request, $request->name);
+        // dd($request, $request->name);
+
+        ContactForm::create([
+            'name' => $request->name,
+            'title' => $request->title,
+            'email' => $request->email,
+            'url' => $request->url,
+            'gender' => $request->gender,
+            'age' => $request->age,
+            'contact' => $request->contact,
+        ]);
+
+        return to_route('contacts.index');
     }
 
     /**
